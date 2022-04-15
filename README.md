@@ -1,3 +1,3 @@
 # Another Counter
 
-[LINK](https:://google.com)
+[LINK](https://kxrn0.github.io/Another-Counter/)
