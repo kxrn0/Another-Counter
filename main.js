@@ -16,6 +16,7 @@ let imageData;
 
 canvas.width = 300;
 canvas.height = 450;
+closeModal.click();
 
 for (let counter of countersArray) {
     counters.append(make_counter(counter.label, Number(counter.value), counter.imageData, counter.id, countersArray));
