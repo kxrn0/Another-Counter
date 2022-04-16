@@ -20,7 +20,6 @@ canvas.height = 450;
 for (let counter of countersArray) {
     counters.append(make_counter(counter.label, Number(counter.value), counter.imageData, counter.id, countersArray));
 }
-closeModal.click();
 
 coverInput.addEventListener("change", async () => {
     make_cover(URL.createObjectURL(coverInput.files[0]), canvas).then(res => {
