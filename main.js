@@ -4,16 +4,18 @@ const actualCover = document.querySelector(".actual-cover");
 const coverImg = actualCover.querySelector("img");
 const beelete = actualCover.querySelector("span");
 const coverInput = document.getElementById("cover");
+const modal = document.querySelector(".modal");
+const closeModal = modal.querySelector("button");
+const modalImage = modal.querySelector("img");
 const counters = document.querySelector(".counters");
-const countersArray = localStorage.getItem("#userData#") ? JSON.parse(localStorage.getItem("#userData#")) : [];
+const userDataString = "_user_data_";
+const countersArray = localStorage.getItem(userDataString) ? JSON.parse(localStorage.getItem(userDataString)) : [];
 const canvas = document.createElement("canvas");
 const context = canvas.getContext("2d");
-let imageData, pepe;
+let imageData;
 
-canvas.width = 100;
-canvas.height = 150;
-
-fetch("https://files.catbox.moe/d9i2h7.txt", { method : "GET" }).then(response => response.text()).then(response => pepe = response);
+canvas.width = 300;
+canvas.height = 450;
 
 for (let counter of countersArray) {
     counters.append(make_counter(counter.label, Number(counter.value), counter.imageData, counter.id, countersArray));
@@ -40,19 +42,20 @@ form.addEventListener("submit", event => {
 
     event.preventDefault();
 
-    if (!imageData) {
-        imageData = pepe;
-    }
     id = make_id(10);
     counter = make_counter(form["counter-label"].value, 0, imageData, id, countersArray);
     counters.append(counter);
     countersArray.push({ value : 0, label : form["counter-label"].value, imageData, id });
-    localStorage.setItem("#userData#", JSON.stringify(countersArray));
+    localStorage.setItem(userDataString, JSON.stringify(countersArray));
     imageData = '';
     coverImg.src = '';
     coverDiv.style.display = "block";
     actualCover.style.display = "none";
     form.reset();
+});
+
+closeModal.addEventListener("click", () => {
+    modal.style.display = "none";
 });
 
 function make_counter(label, value, imageData, id, array) {
@@ -75,7 +78,7 @@ function make_counter(label, value, imageData, id, array) {
     resetButton.classList.add("reset");
     increaseButton.classList.add("increase");
 
-    cover.src = imageData;
+    cover.src = imageData ? imageData : "./pepe.jpg";
     counterLabel.innerText = label;
     counterValue.innerText = value;
     decreaseButton.innerText = "decrease";
@@ -97,7 +100,7 @@ function make_counter(label, value, imageData, id, array) {
         index = array.findIndex(counter => counter.id == id);
         array.splice(index, 1);
         counter.parentElement.removeChild(counter);
-        localStorage.setItem("#userData#", array);
+        localStorage.setItem(userDataString, JSON.stringify(array));
     });
 
     decreaseButton.addEventListener("click", () => {
@@ -118,12 +121,17 @@ function make_counter(label, value, imageData, id, array) {
         update("value", value);
     });
 
+    cover.addEventListener("click", () => {
+        modalImage.src = imageData;
+        modal.style.display = "flex";
+    });
+
     function update(property, value) {
         let object;
 
         object = array.filter(counter => counter.id == id)[0];
         object[property] = value;
-        localStorage.setItem("#userData#", JSON.stringify(array));
+        localStorage.setItem(userDataString, JSON.stringify(array));
     }
     return counter;
 }

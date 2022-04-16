@@ -122,10 +122,13 @@ form .add-counter-button {
 .counter img {
     border: 5px solid black;
     border-radius: 10px;
+    width: 125px;
+    cursor: pointer;
 }
 
 .counter-label {
-    font-size: 2.75rem
+    font-size: 2.75rem;
+    text-align: center;
 }
 
 .counter-value {
@@ -134,13 +137,15 @@ form .add-counter-button {
 
 .actual-cover {
     position: relative;
-    width: 100px;
     margin: 5px auto;
+    width: 100px;
     display: none;
 }
 
 .actual-cover img {
     border-radius: 5px;
+    width: 100px;
+    height: auto;
 }
 
 .actual-cover span {
@@ -158,6 +163,43 @@ form .add-counter-button {
 
 .buttons {
     display: flex;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgb(129, 126, 181, .5);
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    display: none;
+}
+
+.modal-content {
+    position: relative;
+}
+
+.modal img {
+    border-radius: 5px;
+}
+
+.modal button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 25px;
+    height: 25px;
+    border: none;
+    background-color: rgb(202, 235, 235, .5);
+    background-image: url("close-window.svg");
+    background-size: cover;
+}
+
+.modal button:hover {
+    background-color: rgba(155, 183, 183, 0.5);
 }
 
 @media screen and (max-width: 500px) {
