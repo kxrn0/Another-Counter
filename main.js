@@ -16,11 +16,11 @@ let imageData;
 
 canvas.width = 300;
 canvas.height = 450;
-closeModal.click();
 
 for (let counter of countersArray) {
     counters.append(make_counter(counter.label, Number(counter.value), counter.imageData, counter.id, countersArray));
 }
+closeModal.click();
 
 coverInput.addEventListener("change", async () => {
     make_cover(URL.createObjectURL(coverInput.files[0]), canvas).then(res => {
