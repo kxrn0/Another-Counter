@@ -22,7 +22,7 @@ button {
     letter-spacing: .25rem;
     text-transform: uppercase;
     margin: 5px;
-    transition: background-color .5s, color .5s;
+    transition: all .5s, color .5s;
 }
 
 button:hover {
@@ -165,7 +165,7 @@ form .add-counter-button {
     display: flex;
 }
 
-.modal {
+.modal, .warning {
     position: fixed;
     top: 0;
     left: 0;
@@ -178,7 +178,7 @@ form .add-counter-button {
     display: none;
 }
 
-.modal-content {
+.modal-content, .warning-content {
     position: relative;
 }
 
@@ -200,6 +200,50 @@ form .add-counter-button {
 
 .modal button:hover {
     background-color: rgba(155, 183, 183, 0.5);
+}
+
+.warning {
+    display: flex;
+}
+
+.warning-content {
+    background: azure;
+    width: 300px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    border: 3px solid black;
+}
+
+.warning-content p {
+    background: rgb(248, 233, 233);
+    border: 2px solid gray;
+    border-radius: 10px;
+    padding: 10px;
+    width: 90%;
+    margin: 20px;
+}
+
+.warning-content h3 {
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: .15rem;
+}
+
+.warning-content .buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.warning .delete:hover {
+    background: rgb(220, 94, 100);
+    border-color: rgb(220, 94, 100);
+}
+
+.warning .cancel:hover {
+    background: rgb(5, 143, 143);
+    border-color: rgb(5, 143, 143);
 }
 
 @media screen and (max-width: 500px) {
