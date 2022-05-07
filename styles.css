@@ -66,7 +66,7 @@ form label[for="cover"] {
     display: block;
     width: 100px;
     height: 100px;
-    background-image: url("photo.png");
+    background-image: url("./images/upload.svg");
     background-size: cover;
     margin: 10px auto;
     border-radius: 10px;
@@ -111,7 +111,7 @@ form .add-counter-button {
     height: 30px;
     top: 10px;
     right: 10px;
-    background-image: url("delete.png");
+    background-image: url("./images/delete.svg");
     background-size: cover;
 }
 
@@ -127,7 +127,8 @@ form .add-counter-button {
 }
 
 .counter-label {
-    font-size: 2.75rem;
+    max-width: 350px;
+    font-size: 2rem;
     text-align: center;
 }
 
@@ -153,7 +154,7 @@ form .add-counter-button {
     height: 20px;
     background-color: rgb(235, 249, 249, .75);
     border-radius: 50%;
-    background-image: url("close.png");
+    background-image: url("images/remove_cover.svg");
     background-size: cover;
     position: absolute;
     top: 2px;
@@ -182,8 +183,15 @@ form .add-counter-button {
     position: relative;
 }
 
+.modal-content {
+    display: flex;
+    justify-content: center;
+}
+
 .modal img {
     border-radius: 5px;
+    max-width: 100%;
+    max-height: 100vh;
 }
 
 .modal button {
@@ -194,7 +202,7 @@ form .add-counter-button {
     height: 25px;
     border: none;
     background-color: rgb(202, 235, 235, .5);
-    background-image: url("close-window.svg");
+    background-image: url("images/close-window.svg");
     background-size: cover;
 }
 
@@ -202,9 +210,9 @@ form .add-counter-button {
     background-color: rgba(155, 183, 183, 0.5);
 }
 
-.warning {
+/* .warning {
     display: flex;
-}
+} */
 
 .warning-content {
     background: azure;
@@ -253,7 +261,7 @@ form .add-counter-button {
     }
 
     .counter-label {
-        font-size: 1.75rem;
+        font-size: 1.5rem;
     }
 
     .counter-value {

@@ -5,23 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <script src="main.js" defer></script>
+    <script src="main.js" type="module" defer></script>
+    <link rel="shortcut icon" href="images/abacus.ico">
     <title>Counter</title>
-    <!-- 
-        photo.png : <a href="https://www.flaticon.com/free-icons/upload" title="upload icons">Upload icons created by Good Ware - Flaticon</a>
-        close.png : <a href="https://www.flaticon.com/free-icons/cancel" title="cancel icons">Cancel icons created by Freepik - Flaticon</a>
-        delete.png : <a href="https://www.flaticon.com/free-icons/delete" title="delete icons">Delete icons created by Ilham Fitrotul Hayat - Flaticon</a>
-     -->
 </head>
 <body>
     <main>
         <form action="#">
-            <label for="counter-label">Label : </label><input type="text" name="counter-label" required maxlength="50">
+            <label for="counter-label">Label : </label><input type="text" name="counter-label" required>
             <div class="cover-input">
                 <label for="cover"></label>
                 <input type="file" name="cover" accept=".jpg, .jpeg, .png" id="cover">
             </div>
-            <div class="actual-cover"><img src="pepe.jpg" alt=""><span></span></div>
+            <div class="actual-cover"><img src="./images/pepe.jpg" alt=""><span></span></div>
             <button class="add-counter-button">Add Counter</button>
         </form>
         <section class="counters">
