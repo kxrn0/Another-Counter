@@ -105,17 +105,28 @@ form .add-counter-button {
     position: relative;
 }
 
-.counter .delete {
+.counter .delete, .counter .swap {
     position: absolute;
     width: 30px;
     height: 30px;
-    top: 10px;
-    right: 10px;
-    background-image: url("./images/delete.svg");
     background-size: cover;
 }
 
-.counter .delete:hover {
+.counter .swap {
+    top : 10px; 
+    left: 10px;
+    background-image: url("./images/swap.svg");
+    transition: all .33s;
+    border-radius: 5px;
+}
+
+.counter .delete {
+    top: 10px;
+    right: 10px;
+    background-image: url("./images/delete.svg");
+}
+
+.counter .delete:hover, .counter .swap:hover {
     background-color: rgb(45, 31, 31, .15);
 }
 
@@ -124,6 +135,10 @@ form .add-counter-button {
     border-radius: 10px;
     width: 125px;
     cursor: pointer;
+}
+
+.counter input[type="file"] {
+    display: none;
 }
 
 .counter-label {

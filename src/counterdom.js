@@ -1,4 +1,5 @@
 import LZString from "lz-string";
+import { make_cover } from "./utilities";
 
 /**
  * Function that creates a counter DOM element.
@@ -10,7 +11,9 @@ import LZString from "lz-string";
  */
 export function create_counter_dom(counterObj, extInterface) {
     const counter = document.createElement("div");
-    const deleteButton = document.createElement("button");
+    const deleteButton = document.createElement("button");    
+    const swapLabel = document.createElement("label");
+    const swapInput = document.createElement("input");
     const cover = document.createElement("img");
     const counterLabel = document.createElement("p");
     const counterValue = document.createElement("h3");
@@ -22,6 +25,7 @@ export function create_counter_dom(counterObj, extInterface) {
 
     counter.classList.add("counter");
     deleteButton.classList.add("delete");
+    swapLabel.classList.add("swap");
     counterLabel.classList.add("counter-label");
     counterValue.classList.add("counter-value");
     buttonsContainer.classList.add("buttons");
@@ -33,11 +37,18 @@ export function create_counter_dom(counterObj, extInterface) {
     cover.src = data ? data : "./pepe.jpg";
     counterLabel.innerText = counterObj.label;
     counterValue.innerText = counterObj.value;
+    swapLabel.setAttribute("for", `swap-${counterObj.id}`);
+    swapInput.setAttribute("name", `swap-${counterObj.id}`);
+    swapInput.setAttribute("accept", ".jpg, .jpeg, .png");
+    swapInput.id = `swap-${counterObj.id}`;
+    swapInput.setAttribute("type", "file");
     decreaseButton.innerText = "decrease";
     resetButton.innerText = "reset";
     increaseButton.innerText = "increase";
 
     counter.append(deleteButton)
+    counter.append(swapInput);
+    counter.append(swapLabel);
     counter.append(cover);
     counter.append(counterLabel);
     counter.append(counterValue);
@@ -75,6 +86,15 @@ export function create_counter_dom(counterObj, extInterface) {
             deleteWarning.removeEventListener("click", remove_counter);
             cancelWarning.removeEventListener("click", hide);
         }
+    });
+
+    swapInput.addEventListener("change", () => {
+        make_cover(URL.createObjectURL(swapInput.files[0]), 500, 750).then(res => {
+            data = res;
+            counterObj.imageData = LZString.compressToUTF16(res);
+            cover.src = data;
+            localStorage.setItem(extInterface.userDataString, JSON.stringify(extInterface.array));
+        });
     });
 
     decreaseButton.addEventListener("click", () => {
