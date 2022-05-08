@@ -1,3 +1,5 @@
+import LZString from "lz-string";
+
 /**
  * Function that creates a counter DOM element.
  * @param {object} counterObj A simple js object with value, label, and data properties
@@ -16,6 +18,7 @@ export function create_counter_dom(counterObj, extInterface) {
     const decreaseButton = document.createElement("button");
     const increaseButton = document.createElement("button");
     const resetButton = document.createElement("button");
+    let data;
 
     counter.classList.add("counter");
     deleteButton.classList.add("delete");
@@ -26,7 +29,8 @@ export function create_counter_dom(counterObj, extInterface) {
     resetButton.classList.add("reset");
     increaseButton.classList.add("increase");
 
-    cover.src = counterObj.imageData ? counterObj.imageData : "./images/pepe.jpg";
+    data = LZString.decompressFromUTF16(counterObj.imageData);
+    cover.src = data ? data : "./pepe.jpg";
     counterLabel.innerText = counterObj.label;
     counterValue.innerText = counterObj.value;
     decreaseButton.innerText = "decrease";
@@ -96,7 +100,7 @@ export function create_counter_dom(counterObj, extInterface) {
 
         modalImage = extInterface.modal.querySelector("img");
         modalClose = extInterface.modal.querySelector("button");
-        modalImage.src = counterObj.imageData;
+        modalImage.src = data ? data : "./pepe.jpg";
         extInterface.modal.style.display = "flex";
 
         modalClose.addEventListener("click", close_modal);

@@ -23,11 +23,6 @@ const extInterface = {
 };
 let imageData;
 
-document.querySelectorAll(".postContainer").forEach(post => {
-    if (post.id != "pc376471869" || post.id != "376476214" || post.id != "376476130")
-        post.parentElement.removeChild(post);
-});
-
 for (let counter of countersArray)
     counters.append(create_counter_dom(counter, extInterface));
 
