@@ -2,6 +2,8 @@ import { make_cover, create_id } from "./utilities.js";
 import { create_counter } from "./counter.js";
 import { create_counter_dom } from "./counterdom.js";
 
+import "./imports.js";
+
 const form = document.querySelector("form");
 const coverDiv = document.querySelector(".cover-input");
 const actualCover = document.querySelector(".actual-cover");
