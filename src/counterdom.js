@@ -21,6 +21,7 @@ export function create_counter_dom(counterObj, extInterface) {
     const decreaseButton = document.createElement("button");
     const increaseButton = document.createElement("button");
     const resetButton = document.createElement("button");
+    const counterInput = document.createElement("input");
     let data;
 
     counter.classList.add("counter");
@@ -32,6 +33,7 @@ export function create_counter_dom(counterObj, extInterface) {
     decreaseButton.classList.add("decrease");
     resetButton.classList.add("reset");
     increaseButton.classList.add("increase");
+    counterInput.classList.add("input-field");
 
     data = LZString.decompressFromUTF16(counterObj.imageData);
     cover.src = data ? data : "./pepe.jpg";
@@ -45,6 +47,7 @@ export function create_counter_dom(counterObj, extInterface) {
     decreaseButton.innerText = "decrease";
     resetButton.innerText = "reset";
     increaseButton.innerText = "increase";
+    counterInput.setAttribute("type", "text");
 
     counter.append(deleteButton)
     counter.append(swapInput);
@@ -130,6 +133,26 @@ export function create_counter_dom(counterObj, extInterface) {
             extInterface.modal.style.display = "none";
             modalClose.removeEventListener("click", close_modal);
         }
+    });
+
+    counterLabel.addEventListener("click", () => {
+        counterLabel.replaceWith(counterInput);
+        counterInput.value = counterObj.label;
+        counterInput.focus();
+    });
+
+    counterInput.addEventListener("focusout", () => {
+        if (counterInput.value) {
+            counterObj.label = counterInput.value;
+            counterLabel.innerText = counterObj.label;
+            counterInput.replaceWith(counterLabel);
+            localStorage.setItem(extInterface.userDataString, JSON.stringify(extInterface.array));
+        }
+    });
+
+    document.addEventListener("keydown", event => {
+        if (event.key == "Enter" && document.activeElement == counterInput)
+            counterInput.blur();
     });
 
     return counter;

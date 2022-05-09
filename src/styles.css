@@ -45,7 +45,7 @@ form {
     font-size: 1.25rem;
 }
 
-form input[type="text"] {
+form input[type="text"], .input-field {
     appearance: none;
     width: 150px;
     padding: 5px;
@@ -225,9 +225,9 @@ form .add-counter-button {
     background-color: rgba(155, 183, 183, 0.5);
 }
 
-/* .warning {
-    display: flex;
-} */
+.input-field {
+    font-size: 1.5rem;
+}
 
 .warning-content {
     background: azure;
